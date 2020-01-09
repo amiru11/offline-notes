@@ -1,5 +1,5 @@
 import { ApolloCache, Resolvers } from "@apollo/client";
-import { NOTE_FRAGMENT } from "./fragments";
+import { NOTE_FRAGMENT } from "./fragments/note";
 
 // How to Our schema looks
 export const typeDefs = [
@@ -37,12 +37,6 @@ interface ResolverMap {
 interface AppResolvers extends Resolvers {
   Query: ResolverMap;
 }
-
-type INote = {
-  id: number;
-  title: string;
-  content: string;
-};
 
 export const resolvers: AppResolvers = {
   Query: {

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useQuery } from "@apollo/client";
-import { GET_NOTES } from "./queries";
+import { GET_NOTES } from "./queries/note";
 
 const App: React.FC = () => {
   const { loading, error, data } = useQuery(GET_NOTES);
@@ -8,7 +8,6 @@ const App: React.FC = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
-  console.log("data", data);
   return (
     <>
       <div className="App">

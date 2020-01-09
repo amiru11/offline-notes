@@ -1,10 +1,16 @@
 import * as React from "react";
-import GlobalStyle from "./styles/globalStyle";
+import { useQuery } from "@apollo/client";
+import { GET_NOTES } from "./queries";
 
 const App: React.FC = () => {
+  const { loading, error, data } = useQuery(GET_NOTES);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+
+  console.log("data", data);
   return (
     <>
-      <GlobalStyle />
       <div className="App">
         <header className="App-header">
           <p>

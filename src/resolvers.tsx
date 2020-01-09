@@ -1,5 +1,6 @@
 import { ApolloCache, Resolvers } from "@apollo/client";
 import { NOTE_FRAGMENT } from "./fragments/note";
+import { GET_NOTES } from "./queries/note";
 
 // How to Our schema looks
 export const typeDefs = [
@@ -43,6 +44,24 @@ export const resolvers: AppResolvers = {
     note: (_, { id }: { id: string }, { cache }) => {
       const note = cache.readFragment({ fragment: NOTE_FRAGMENT, id });
       return note;
+    }
+  },
+  Mutation: {
+    createNote: (_, args, { cache }) => {
+      const { notes } = cache.readQuery({ query: GET_NOTES });
+      const { title, content } = args;
+      const newNote = {
+        id: notes.length + 1,
+        title,
+        content
+      };
+      cache.writeData({
+        data: {
+          notes: [newNote, ...notes]
+        }
+      });
+
+      return newNote;
     }
   }
 };

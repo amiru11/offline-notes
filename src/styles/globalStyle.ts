@@ -3,4 +3,7 @@ import reset from "styled-reset";
 
 export default createGlobalStyle`
   ${reset}
+  html, body {
+    height: 100%;
+  }
 `;

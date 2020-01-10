@@ -1,23 +1,17 @@
 import * as React from "react";
-import { useQuery } from "@apollo/client";
-import { GET_NOTES } from "./queries/note";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import NoteList from "./components/NoteList";
 
 const App: React.FC = () => {
-  const { loading, error, data } = useQuery(GET_NOTES);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
-
   return (
-    <>
-      <div className="App">
-        <header className="App-header">
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-        </header>
-      </div>
-    </>
+    <BrowserRouter>
+      <Switch>
+        <Route exact={true} path={"/"} component={NoteList} />
+        {/* <Route path={"/note/add"} component={Add} />
+        <Route path={"/note/:id"} component={Note} />
+        <Route path={"/note/edit/:id"} component={Edit} /> */}
+      </Switch>
+    </BrowserRouter>
   );
 };
 

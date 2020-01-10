@@ -1,12 +1,12 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { GET_NOTES } from "../queries/note";
+import { GET_NOTES } from "../../queries/note";
 
-import { INote } from "./types";
+import { INote } from "../types";
 
-import NoteItem from "./NoteItem";
-import { ListBlock } from "../styles/noteList";
+import { ListBlock } from "../../styles/noteList";
+import { ItemBlock, ItemContents } from "../../styles/noteItem";
 
 const NoteList: React.FC = () => {
   const { loading, error, data } = useQuery(GET_NOTES);
@@ -23,7 +23,15 @@ const NoteList: React.FC = () => {
         </Link>
       </header>
       {data.length &&
-        data.map((note: INote) => <NoteItem {...note} key={note.id} />)}
+        data.map((note: INote) => (
+          <ItemBlock key={note.id}>
+            <ItemContents>
+              <h2>
+                <Link to={`/note/${note.id}`}>{note.title}</Link>
+              </h2>
+            </ItemContents>
+          </ItemBlock>
+        ))}
     </ListBlock>
   );
 };

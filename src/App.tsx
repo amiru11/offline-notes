@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import NoteList from "./components/NoteList";
+import NoteList from "./components/Note/List";
 
 const App: React.FC = () => {
   return (

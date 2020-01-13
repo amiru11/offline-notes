@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import MarkdownRenderer from "react-markdown-renderer";
+import Markdown from "markdown-to-jsx";
 
 import {
   TitleContainer,
@@ -32,6 +32,7 @@ function Editor({ id, title, content, onSave }: any): JSX.Element {
   const _onSave = (): void => {
     onSave(_title, _content, id);
   };
+  // const input = "# This is a header\n\nAnd this is a paragraph";
   return (
     <>
       <TitleContainer>
@@ -45,12 +46,12 @@ function Editor({ id, title, content, onSave }: any): JSX.Element {
       </TitleContainer>
       <ContentPreview>
         <ContentInput
-          value={content}
+          value={_content}
           onChange={handleChange}
           placeholder={"# This supports markdown!"}
           name={"content"}
         />
-        <MarkdownRenderer markdown={content} className={"markdown"} />
+        <Markdown children={_content} className={"markdown"} />
       </ContentPreview>
     </>
   );

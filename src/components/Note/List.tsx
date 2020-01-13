@@ -13,7 +13,7 @@ const NoteList: React.FC = () => {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
-
+  console.log("data", data);
   return (
     <ListBlock>
       <header>

@@ -18,15 +18,19 @@ function NoteEdit(): JSX.Element {
   });
   const [editNote] = useMutation<{ editNote: Note }>(EDIT_NOTE);
 
-  const onSave = async (
-    id: string,
-    title: string,
-    content: string
-  ): Promise<void> => {
+  const onSave = async ({
+    id,
+    title,
+    content
+  }: {
+    id: string;
+    title: string;
+    content: string;
+  }): Promise<void> => {
     try {
       const note = await editNote({ variables: { id, title, content } });
       if (note) {
-        history.push("/");
+        // history.push("/");
       } else {
         throw new Error("Error!");
       }

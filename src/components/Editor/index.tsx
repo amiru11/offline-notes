@@ -30,7 +30,7 @@ function Editor({ id, title, content, onSave }: any): JSX.Element {
     []
   );
   const _onSave = (): void => {
-    onSave(_title, _content, id);
+    onSave({ title: _title, content: _content, id });
   };
   // const input = "# This is a header\n\nAnd this is a paragraph";
   return (

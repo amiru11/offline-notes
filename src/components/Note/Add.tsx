@@ -9,7 +9,13 @@ function NoteAdd(): JSX.Element {
   const history = useHistory();
   const [createNote] = useMutation<{ createNote: Note }>(CREATE_NOTE);
 
-  const onSave = async (title: string, content: string): Promise<void> => {
+  const onSave = async ({
+    title,
+    content
+  }: {
+    title: string;
+    content: string;
+  }): Promise<void> => {
     try {
       const note = await createNote({ variables: { title, content } });
       if (note) {

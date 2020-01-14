@@ -16,7 +16,7 @@ export const typeDefs = [
   }
   type Mutation {
     createNote(title: String!, content: String!): Note
-    editNote(id: Int!, title: String!, content: String!): Boolean
+    editNote(id: Int!, title: String!, content: String!): Note
   }
   type Note {
     id: Int!
@@ -42,6 +42,16 @@ interface AppResolvers extends Resolvers {
 
 export const resolvers: AppResolvers = {
   Query: {
+    notes: (_, variables, { cache }) => {
+      try {
+        console.log("cache", cache);
+        const response: any = cache.readQuery({ query: GET_NOTES });
+        console.log("response", response.notes);
+        return response.notes;
+      } catch (error) {
+        console.log(error);
+      }
+    },
     note: (_, { id }: { id: string }, { cache }) => {
       const note = cache.readFragment({ fragment: NOTE_FRAGMENT, id });
       console.log("note", note);
@@ -50,20 +60,22 @@ export const resolvers: AppResolvers = {
   },
   Mutation: {
     createNote: (_, args, { cache }) => {
-      console.log("note");
       const { notes } = cache.readQuery({ query: GET_NOTES });
-      console.log("args", args);
       const { title, content } = args;
       const newNote = {
         id: notes.length + 1,
         title,
         content
       };
+      console.log("newNote", newNote);
+      console.log("newNote", [newNote, ...notes]);
       cache.writeData({
         data: {
           notes: [newNote, ...notes]
         }
       });
+      const response = cache.readQuery({ query: GET_NOTES });
+      console.log("response", response);
       saveNotes(cache);
 
       return newNote;

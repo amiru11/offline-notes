@@ -22,16 +22,17 @@ const NoteList: React.FC = () => {
           <button>ADD NOTE</button>
         </Link>
       </header>
-      {data.length &&
-        data.map((note: INote) => (
-          <ItemBlock key={note.id}>
-            <ItemContents>
-              <h2>
-                <Link to={`/note/${note.id}`}>{note.title}</Link>
-              </h2>
-            </ItemContents>
-          </ItemBlock>
-        ))}
+      {data && data.notes.length
+        ? data.notes.map((note: INote) => (
+            <ItemBlock key={note.id}>
+              <ItemContents>
+                <h2>
+                  <Link to={`/note/${note.id}`}>{note.title}</Link>
+                </h2>
+              </ItemContents>
+            </ItemBlock>
+          ))
+        : ""}
     </ListBlock>
   );
 };

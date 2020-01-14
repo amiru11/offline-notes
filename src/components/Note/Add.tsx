@@ -17,7 +17,7 @@ function AddNote(): JSX.Element {
       const note = await createNote({ variables: { title, content } });
       if (note) {
         console.log(note);
-        history.push("/");
+        // history.push("/");
       } else {
         throw new Error("Error!");
       }

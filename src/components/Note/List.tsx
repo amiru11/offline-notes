@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_NOTES } from "../../queries/note";
 
-import { INote, INotes } from "../types";
+import { Note, INotes } from "../types";
 
 import { Container } from "../../styles/common";
 import { ItemBlock, ItemContents } from "../../styles/noteItem";
@@ -22,7 +22,7 @@ const NoteList: React.FC = () => {
         </Link>
       </header>
       {data && data.notes.length
-        ? data.notes.map((note: INote) => (
+        ? data.notes.map((note: Note) => (
             <ItemBlock key={note.id}>
               <ItemContents>
                 <h2>

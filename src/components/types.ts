@@ -1,9 +1,13 @@
-export type INote = {
+export type Note = {
   id: number;
   title: string;
   content: string;
 };
 
 export interface INotes {
-  notes: INote[];
+  notes: Note[];
+}
+
+export interface INote {
+  note: Note;
 }

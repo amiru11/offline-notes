@@ -2,12 +2,12 @@ import * as React from "react";
 import { useHistory } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { CREATE_NOTE } from "../../mutations/note";
-import { INote } from "../types";
+import { Note } from "../types";
 import Editor from "../Editor";
 
 function NoteAdd(): JSX.Element {
   const history = useHistory();
-  const [createNote] = useMutation<{ createNote: INote }>(CREATE_NOTE);
+  const [createNote] = useMutation<{ createNote: Note }>(CREATE_NOTE);
 
   const onSave = async (title: string, content: string): Promise<void> => {
     try {

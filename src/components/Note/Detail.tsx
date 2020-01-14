@@ -5,12 +5,16 @@ import { useQuery } from "@apollo/client";
 import Markdown from "markdown-to-jsx";
 import { GET_NOTE } from "../../queries/note";
 
+import { INote } from "../types";
+
 import { Container } from "../../styles/common";
 import { TitleContainer, Title, Button } from "../../styles/noteDetail";
 
 function NoteDetail(): JSX.Element {
   const { id } = useParams();
-  const { loading, error, data } = useQuery(GET_NOTE, { variables: { id } });
+  const { loading, error, data } = useQuery<INote>(GET_NOTE, {
+    variables: { id }
+  });
   if (loading) return <p>Loading...</p>;
   if (error) {
     console.error(error);

@@ -26,11 +26,7 @@ export const typeDefs = [
 `
 ];
 
-type ResolverFn = (
-  parent: any,
-  args: any,
-  { cache }: { cache: ApolloCache<any> }
-) => any;
+type ResolverFn = (parent: any, args: any, { cache }: any) => any;
 
 interface ResolverMap {
   [field: string]: ResolverFn;
@@ -42,19 +38,12 @@ interface AppResolvers extends Resolvers {
 
 export const resolvers: AppResolvers = {
   Query: {
-    notes: (_, variables, { cache }) => {
-      try {
-        console.log("cache", cache);
-        const response: any = cache.readQuery({ query: GET_NOTES });
-        console.log("response", response.notes);
-        return response.notes;
-      } catch (error) {
-        console.log(error);
-      }
-    },
     note: (_, { id }: { id: string }, { cache }) => {
-      const note = cache.readFragment({ fragment: NOTE_FRAGMENT, id });
-      console.log("note", note);
+      const noteId = cache.config.dataIdFromObject({
+        __typename: "Note",
+        id
+      });
+      const note = cache.readFragment({ fragment: NOTE_FRAGMENT, id: noteId });
       return note;
     }
   },
@@ -63,12 +52,11 @@ export const resolvers: AppResolvers = {
       const { notes } = cache.readQuery({ query: GET_NOTES });
       const { title, content } = args;
       const newNote = {
+        __typename: "Note",
         id: notes.length + 1,
         title,
         content
       };
-      console.log("newNote", newNote);
-      console.log("newNote", [newNote, ...notes]);
       cache.writeData({
         data: {
           notes: [newNote, ...notes]

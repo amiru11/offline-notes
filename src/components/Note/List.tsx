@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_NOTES } from "../../queries/note";
 
-import { INote } from "../types";
+import { INote, INotes } from "../types";
 
 import { ListBlock } from "../../styles/noteList";
 import { ItemBlock, ItemContents } from "../../styles/noteItem";
 
 const NoteList: React.FC = () => {
-  const { loading, error, data } = useQuery(GET_NOTES);
+  const { loading, error, data } = useQuery<INotes>(GET_NOTES);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;

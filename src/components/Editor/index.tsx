@@ -37,7 +37,7 @@ function Editor({ id, title, content, onSave }: any): JSX.Element {
     <>
       <TitleContainer>
         <TitleInput
-          value={title}
+          value={_title}
           onChange={handleChange}
           placeholder={"Untitled..."}
           name={"title"}

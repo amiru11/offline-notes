@@ -17,7 +17,7 @@ const NoteList: React.FC = () => {
     <Container>
       <header>
         <h1>Simple Notes</h1>
-        <Link to={"/note/add"}>
+        <Link to={"/add"}>
           <button>ADD NOTE</button>
         </Link>
       </header>
@@ -26,7 +26,7 @@ const NoteList: React.FC = () => {
             <ItemBlock key={note.id}>
               <ItemContents>
                 <h2>
-                  <Link to={`/note/${note.id}`}>{note.title}</Link>
+                  <Link to={`/detail/${note.id}`}>{note.title}</Link>
                 </h2>
               </ItemContents>
             </ItemBlock>

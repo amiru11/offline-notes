@@ -11,3 +11,5 @@ export const Container = styled.div`
     padding-right: 1rem;
   }
 `;
+
+export const Button = styled.button``;

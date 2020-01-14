@@ -39,7 +39,7 @@ function NoteDetail(): JSX.Element {
     <Container>
       <TitleContainer>
         <Title>{note.title}</Title>
-        <Link to={`/note/edit/${note.id}`}>
+        <Link to={`/edit/${note.id}`}>
           <button>EDIT</button>
         </Link>
       </TitleContainer>

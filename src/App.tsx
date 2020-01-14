@@ -10,9 +10,9 @@ const App: React.FC = () => {
     <BrowserRouter>
       <Switch>
         <Route exact={true} path={"/"} component={NoteList} />
-        <Route path={"/note/add"} component={NoteAdd} />
-        <Route path={"/note/:id"} component={NoteDetail} />
-        <Route path={"/note/edit/:id"} component={NoteEdit} />
+        <Route path={"/add"} component={NoteAdd} />
+        <Route path={"/detail/:id"} component={NoteDetail} />
+        <Route path={"/edit/:id"} component={NoteEdit} />
       </Switch>
     </BrowserRouter>
   );

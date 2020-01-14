@@ -1,4 +1,4 @@
-import { ApolloCache, Resolvers } from "@apollo/client";
+import { Resolvers } from "@apollo/client";
 import { NOTE_FRAGMENT } from "./fragments/note";
 import { GET_NOTES } from "./queries/note";
 import { saveNotes } from "./lib/localStorage";

@@ -6,6 +6,8 @@ import {
   TitleInput,
   ContentPreview,
   ContentInput,
+  ContentMarkdown,
+  MarkdownInput,
   Button
 } from "../../styles/editor";
 
@@ -39,7 +41,7 @@ function Editor({ id, title, content, onSave }: any): JSX.Element {
         <TitleInput
           value={_title}
           onChange={handleChange}
-          placeholder={"Untitled..."}
+          placeholder={"👨🏻‍💻.."}
           name={"title"}
         />
         <Button onClick={_onSave}>Save</Button>
@@ -48,10 +50,12 @@ function Editor({ id, title, content, onSave }: any): JSX.Element {
         <ContentInput
           value={_content}
           onChange={handleChange}
-          placeholder={"# This supports markdown!"}
+          placeholder={"Tell me Your story"}
           name={"content"}
         />
-        <Markdown children={_content} className={"markdown"} />
+        <ContentMarkdown>
+          <MarkdownInput children={_content} className={"markdown"} />
+        </ContentMarkdown>
       </ContentPreview>
     </>
   );

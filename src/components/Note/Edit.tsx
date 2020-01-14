@@ -70,14 +70,12 @@ function NoteEdit(): JSX.Element {
 
   const { note } = data;
   return (
-    <Container>
-      <Editor
-        id={note.id}
-        title={note.title}
-        content={note.content}
-        onSave={onSave}
-      />
-    </Container>
+    <Editor
+      id={note.id}
+      title={note.title}
+      content={note.content}
+      onSave={onSave}
+    />
   );
 }
 

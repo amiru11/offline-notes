@@ -62,11 +62,34 @@ export const resolvers: AppResolvers = {
           notes: [newNote, ...notes]
         }
       });
-      const response = cache.readQuery({ query: GET_NOTES });
-      console.log("response", response);
       saveNotes(cache);
 
       return newNote;
+    },
+    editNote: (
+      _,
+      { id, title, content }: { id: string; title: string; content: string },
+      { cache }
+    ) => {
+      const noteId = cache.config.dataIdFromObject({
+        __typename: "Note",
+        id
+      });
+      const note = cache.readFragment({ fragment: NOTE_FRAGMENT, id: noteId });
+
+      // updateNote with rest
+      const updatedNote = {
+        ...note,
+        title,
+        content
+      };
+      cache.writeFragment({
+        id: noteId,
+        fragment: NOTE_FRAGMENT,
+        data: updatedNote
+      });
+      saveNotes(cache);
+      return updatedNote;
     }
   }
 };

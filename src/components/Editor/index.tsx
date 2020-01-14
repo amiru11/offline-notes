@@ -1,15 +1,16 @@
 import React, { useState, useCallback } from "react";
-import Markdown from "markdown-to-jsx";
+import { MdArrowBack } from "react-icons/md";
 
 import {
   TitleContainer,
   TitleInput,
+  TitleButton,
   ContentPreview,
   ContentInput,
   ContentMarkdown,
-  MarkdownInput,
-  Button
+  MarkdownInput
 } from "../../styles/editor";
+import { Link } from "react-router-dom";
 
 function Editor({ id, title, content, onSave }: any): JSX.Element {
   const [_title, setTitle] = useState<string>(title || "");
@@ -38,13 +39,16 @@ function Editor({ id, title, content, onSave }: any): JSX.Element {
   return (
     <>
       <TitleContainer>
+        <Link to={"/"}>
+          <MdArrowBack />
+        </Link>
         <TitleInput
           value={_title}
           onChange={handleChange}
           placeholder={"👨🏻‍💻.."}
           name={"title"}
         />
-        <Button onClick={_onSave}>Save</Button>
+        <TitleButton onClick={_onSave}>Save</TitleButton>
       </TitleContainer>
       <ContentPreview>
         <ContentInput

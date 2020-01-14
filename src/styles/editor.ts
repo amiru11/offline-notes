@@ -9,17 +9,40 @@ export const TitleContainer = styled.div`
   padding: 0 20px;
   display: flex;
   align-items: center;
+  svg {
+    font-size: 24px;
+    cursor: pointer;
+
+    &:hover {
+      color: #ff9999;
+    }
+  }
 `;
 
 export const TitleInput = styled(TextareaAutosize)`
   color: #ffffff;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 400;
   margin: 0 20px;
   width: 100%;
+  min-height: 36px;
   &::placeholder {
     color: rgba(255, 255, 255, 0.5);
     font-weight: 400;
+  }
+`;
+
+export const TitleButton = styled.button`
+  border: 0;
+  background-color: #ff9999;
+  color: #ffffff;
+  height: 36px;
+  min-width: 72px;
+  border-radius: 5px;
+  font-size: 16px;
+  &:hover {
+    color: #ff9999;
+    background-color: #ffffff;
   }
 `;
 
@@ -34,11 +57,11 @@ export const ContentInput = styled(TextareaAutosize)`
   &::placeholder {
     color: rgba(233, 237, 237, 0.5);
   }
-  font-family: "Inconsolata", "D2 Coding", sans-serif;
-  font-size: 18px;
+  font-family: "Dokdo", "Apple SD Gothic Neo", sans-serif;
+  font-size: 24px;
   flex: 1 1;
   padding: 20px;
-  background-color: #263238;
+  background-color: #0d2f2d;
   height: 100% !important;
   line-height: 1.5;
 `;
@@ -50,6 +73,7 @@ export const ContentMarkdown = styled.div`
 `;
 
 export const MarkdownInput = styled(Markdown)`
+  font-size: 24px;
   & pre {
     padding: 14px;
     margin: 10px 0;

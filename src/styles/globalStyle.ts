@@ -1,6 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
+	@import url('https://fonts.googleapis.com/css?family=Dokdo&display=swap');
 	html, body, #root {
 			margin: 0;
 			padding: 0;
@@ -12,7 +13,7 @@ export default createGlobalStyle`
 		--pinkColor: #ff9999;
 	}
 	body {
-		font-family: "Apple SD Gothic Neo", AppleSDGothicNeo, "Noto Sans CJK KR", NanumGothic, "Malgun Gothic", "맑은 고딕", 돋움, dotum, arial, sans-serif;
+		font-family: "Dokdo", "Apple SD Gothic Neo", AppleSDGothicNeo, "Noto Sans CJK KR", NanumGothic, "Malgun Gothic", "맑은 고딕", 돋움, dotum, arial, sans-serif;
 		color:var(--blackColor);
 		-webkit-box-sizing: border-box;
 		box-sizing: border-box;
@@ -42,6 +43,15 @@ export default createGlobalStyle`
 		&:focus,
 		&:active{
 			outline:none;
+		}
+	}
+	pre {
+		&.markdown {
+			padding: 14px;
+			margin: 10px 0;
+			overflow: auto;
+			border: 1px solid #f1f3f5;
+			background: #fafafa;
 		}
 	}
 	.markdown a{

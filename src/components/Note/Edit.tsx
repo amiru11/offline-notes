@@ -30,7 +30,7 @@ function NoteEdit(): JSX.Element {
     try {
       const note = await editNote({ variables: { id, title, content } });
       if (note) {
-        // history.push("/");
+        history.push("/");
       } else {
         throw new Error("Error!");
       }

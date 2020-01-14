@@ -5,7 +5,7 @@ import { GET_NOTES } from "../../queries/note";
 
 import { INote, INotes } from "../types";
 
-import { ListBlock } from "../../styles/noteList";
+import { Container } from "../../styles/common";
 import { ItemBlock, ItemContents } from "../../styles/noteItem";
 
 const NoteList: React.FC = () => {
@@ -13,9 +13,8 @@ const NoteList: React.FC = () => {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
-  console.log("data", data);
   return (
-    <ListBlock>
+    <Container>
       <header>
         <h1>Simple Notes</h1>
         <Link to={"/note/add"}>
@@ -33,7 +32,7 @@ const NoteList: React.FC = () => {
             </ItemBlock>
           ))
         : ""}
-    </ListBlock>
+    </Container>
   );
 };
 

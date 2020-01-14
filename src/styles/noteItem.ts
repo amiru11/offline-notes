@@ -2,10 +2,7 @@ import styled from "styled-components";
 
 export const ItemBlock = styled.div`
   display: flex;
-
-  & + & {
-    margin-top: 3rem;
-  }
+  margin: 20px 0;
 `;
 
 export const ItemContents = styled.div`

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import { MdArrowBack } from "react-icons/md";
 
 import {
@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 function Editor({ id, title, content, onSave }: any): JSX.Element {
   const [_title, setTitle] = useState<string>(title || "");
   const [_content, setContent] = useState<string>(content || "");
+  const textArea = useRef<HTMLTextAreaElement>(null);
 
   const handleChange = useCallback(
     ({ target }: React.ChangeEvent<HTMLTextAreaElement>): void => {
@@ -32,6 +33,24 @@ function Editor({ id, title, content, onSave }: any): JSX.Element {
     },
     []
   );
+  const handleKeydown = (e: React.KeyboardEvent<HTMLTextAreaElement>): void => {
+    if (e.key === "Tab") {
+      e.preventDefault();
+      const { selectionStart, selectionEnd } = e.currentTarget;
+
+      const newValue =
+        _content.substring(0, selectionStart) +
+        "  " +
+        _content.substring(selectionEnd);
+
+      setContent(newValue);
+      if (textArea.current) {
+        textArea.current.value = newValue;
+        textArea.current.selectionStart = textArea.current.selectionEnd =
+          selectionStart + 2;
+      }
+    }
+  };
   const _onSave = (): void => {
     onSave({ title: _title, content: _content, id });
   };
@@ -53,6 +72,7 @@ function Editor({ id, title, content, onSave }: any): JSX.Element {
       <ContentPreview>
         <ContentInput
           value={_content}
+          onKeyDown={handleKeydown}
           onChange={handleChange}
           placeholder={"Tell me Your story"}
           name={"content"}

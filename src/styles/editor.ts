@@ -74,6 +74,9 @@ export const ContentMarkdown = styled.div`
 
 export const MarkdownInput = styled(Markdown)`
   font-size: 24px;
+  & h1 {
+    font-size: 24px;
+  }
   & pre {
     padding: 14px;
     margin: 10px 0;
